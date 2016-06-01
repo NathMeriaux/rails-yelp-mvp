@@ -2,4 +2,9 @@
 <p><%= @restaurant.address %></p>
 <p><%= @restaurant.phone_number %></p>
 <p><%= @restaurant.category %></p>
+
+<%= link_to "See all reviews", restaurant_reviews_path(@restaurant) %>
+<br>
+<%= link_to "Add a review", new_restaurant_review_path(@restaurant) %>
+<br>
 <%= link_to "Return to list", restaurants_path %>

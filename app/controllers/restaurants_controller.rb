@@ -14,8 +14,11 @@ before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.save
-    redirect_to restaurant_path(@restaurant)
+    if @restaurant.save
+      redirect_to restaurant_path(@restaurant)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -23,7 +26,11 @@ before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   def update
     @restaurant.update(restaurant_params)
-    redirect_to restaurant_path(@restaurant)
+    if @restaurant.save
+      redirect_to restaurant_path(@restaurant)
+    else
+      render :new
+    end
   end
 
   def destroy
@@ -34,7 +41,7 @@ before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :address)
+    params.require(:restaurant).permit(:name, :address, :phone_number, :category)
   end
 
   def set_restaurant
